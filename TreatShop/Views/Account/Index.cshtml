@@ -4,20 +4,73 @@
 
 @using System.Security.Claims
 
-<h2>Authentication with Identity</h2>
 <hr />
 @if (User.Identity.IsAuthenticated)
 {
-    <p>Hello @User.Identity.Name!</p>
-    @using (Html.BeginForm("LogOff", "Account"))
-    {
-        <input type="submit" class="btn btn-default" value="Log out" />
-    }
+<h2>Welecome To Your Dashboard @User.Identity.Name!</h2>
+    <section class="bg-light">
+      <div class="container">
+        <div class="text-center">
+          <p class="lead">Feel free to navigate through the Flavors & Treats links at the top of the page.</p>
+          <p class="lead">Or log out if you're all finished!</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reg-modal">
+              Log Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="modal fade" id="reg-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modal-title">Log Out</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure you would like to log out?</p>
+          </div>
+          <div class="modal-footer">
+              @using (Html.BeginForm("LogOff", "Account"))
+              {
+                  <input type="submit" class="btn btn-default" value="Log out" />
+              }
+          </div>
+        </div>
+      </div>
+    </div>
 }
 else
 {
-    <p>@Html.ActionLink("Register", "Register")</p>
-    <p>@Html.ActionLink("Log in", "Login")</p>
+  <h2>Please Register Or Login To Create, Update, & Delete Treats/Flavors</h2>
+    <section class="bg-light">
+      <div class="container">
+        <div class="text-center">
+          <p class="lead">You must login to perform actions outside of viewing items!</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })
+            @Html.ActionLink("Create New Account", "Register", "Account", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })
+          </div>
+        </div>
+      </div>
+    </section>
+
 }
 
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"
+></script>
+<script>
+  const tooltips = document.querySelectorAll('.tt')
+  tooltips.forEach(t => {
+    new bootstrap.Tooltip(t)
+  })
+</script>
