@@ -1,9 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TreatShop.Models;
+using System.Linq;
 
-namespace ToDoList.Controllers
+namespace TreatShop.Controllers
 {
     public class HomeController : Controller
     {
+
+      private readonly TreatShopContext _db;
+
+      public HomeController(TreatShopContext db)
+      {
+        _db = db;
+      }
 
       [HttpGet("/")]
       public ActionResult Index()
@@ -11,5 +20,12 @@ namespace ToDoList.Controllers
         return View();
       }
 
+      [HttpGet("/ViewAll")]
+      public ActionResult ViewAll()
+      {
+        ViewData["flavors"] = _db.Flavors.ToList();
+        ViewData["treats"] = _db. Treats.ToList();
+        return View();
+      }
     }
 }

@@ -1,6 +1,6 @@
-# Dr. Sillystringz's Factory
+# Pierre's Sweet & Savory Treats
 
-#### C# application designed to demonstrate an understanding of many-to-many databse relationships, basic MVC structure, and CRUD operations.
+#### C# application designed to demonstrate an understanding of user authentication/authorization, many-to-many databse relationships, basic MVC structure, and CRUD operations.
 
 #### By Ryan Spencer
 
@@ -16,10 +16,11 @@
 - _CSS_
 - _Bootstrap_
 - _Entity Framework_
+- _Identity_
 
 ## Description
 
-This application was designed for a fictional manufacturing company utilizing C# and MySQL. The goal of the project was to create an application that allows Dr. Sillystringz to create, read, update, and delete both engineers working for the company and machines that the business owns. This applicaiton demonstrates an understanding of a "many-to-many" relationship between engineers and machines, an engineer can be licensed to operate on multiple machines and a machine can have multiple engineers assigned for repairs.
+This application was designed for a fictional bakery utilizing C# and MySQL. The goal of the project was to create an application that allows users to create, read, update, and delete both treat flavors and the treats themselves. This applicaiton demonstrates an understanding of a "many-to-many" relationship between flavors and treats, a flavor can have multiple treats attached to it and an individual treat can have multiple flavors.
 
 ## Setup/Installation Requirements
 
