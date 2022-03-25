@@ -4,21 +4,31 @@
 
 @model TreatShop.Models.Flavor
 
-<h2 class="display-4 lh-1 mb-4">Edit @Html.DisplayFor(model => model.Name)</h2>
-
-<div class="col-12 col-lg-5">
-  @using (Html.BeginForm())
-  {
-    @Html.HiddenFor(model => model.FlavorId)
-    <div class="form-group">
-      <p>Flavor Name</p>
-      @Html.TextBoxFor(model => model.Name,
-      new {required="required"})
-    </div>
-      <input type="submit" value="Save" class="btn btn-primary"/>
-  }
-</div>
-
-<br>
-
-<p>@Html.ActionLink("Back to Flavors", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.FlavorId)
+  <section id="login-page">
+        <div class="container-lg">
+          <div class="text-center">
+            <h4 class="display-4 lh-1 mb-4">Edit @Html.DisplayFor(model => model.Name)</h4>
+            <p class="lead">Edit Flavors And Save Changes</p>
+          </div>
+          <div class="row justify-content-center my-5">
+            <div class="col-lg-6">
+              <form>
+                <label for="name" class="form-label">Flavor Name</label>
+                <div class="input-group mb-4">
+                  <span class="input-group-text">
+                    <i class="bi bi-heart-fill"></i>
+                  </span>
+                    @Html.TextBoxFor(model => model.Name, new { @class="form-control" }) 
+                </div>
+                <div class="mb-4 text-center">
+                  <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+}

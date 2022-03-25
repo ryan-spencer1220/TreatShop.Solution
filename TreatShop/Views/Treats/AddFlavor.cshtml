@@ -4,20 +4,31 @@
 
 @model TreatShop.Models.Treat
 
-<h4 class="display-4 lh-1 mb-4">Add Flavor To @Html.DisplayFor(model => model.Name)</h4>
-
-<div class="col-12 col-lg-5">
-  @using (Html.BeginForm())
-  {
-      @Html.HiddenFor(model => model.TreatId)
-    <div class="form-group">
-      <p>Select Flavor</p>
-      @Html.DropDownList("FlavorId")
-    </div>
-      <input type="submit" value="Save" class="btn btn-primary"/>
-  }
-</div>
-<br>
-<div class="col-12 col-lg-5">
-  <p>@Html.ActionLink("Back to list", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
-</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.TreatId)
+    <section id="login-page">
+      <div class="container-lg">
+        <div class="text-center">
+          <h2>Add Flavor To @Html.DisplayFor(model => model.Name)</h2>
+          <p class="lead">Enter Additional Treat Flavors Here!</p>
+        </div>
+        <div class="row justify-content-center my-5">
+          <div class="col-lg-6">
+            <form>
+              <label for="flavor" class="form-label">Flavor</label>
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <i class="bi bi-heart-fill"></i>
+                </span>
+                  @Html.DropDownList("FlavorId", (IEnumerable<SelectListItem>)ViewBag.FlavorId, "Please Select Flavor", new { @class="form-control" }) 
+              </div>
+              <div class="mb-4 text-center">
+                <input type="submit" value="Add Flavor" class="btn btn-primary" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+}
