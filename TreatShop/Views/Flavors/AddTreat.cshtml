@@ -4,20 +4,32 @@
 
 @model TreatShop.Models.Flavor
 
-<h4 class="display-4 lh-1 mb-4">Add Treat To @Html.DisplayFor(model => model.Name)</h4>
+@using (Html.BeginForm())
+{
+@Html.HiddenFor(model => model.FlavorId)
 
-<div class="lead fw-normal text-muted mb-5 mb-lg-0">
-  @using (Html.BeginForm())
-  {
-      @Html.HiddenFor(model => model.FlavorId)
-    <div class="form-group">
-      @Html.Label("Select Treat")
-      @Html.DropDownList("TreatId")
-    </div>
-      <input type="submit" value="Save" class="btn btn-primary"/>
-  }
-</div>
-
-<br>
-
-<p>@Html.ActionLink("Back to Flavors", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
+ <section id="login-page">
+      <div class="container-lg">
+        <div class="text-center">
+          <h4 class="display-4 lh-1 mb-4">Add Treat To @Html.DisplayFor(model => model.Name)</h4>
+          <p class="lead">Select From The Following Treats!</p>
+        </div>
+        <div class="row justify-content-center my-5">
+          <div class="col-lg-6">
+            <form>
+              <label for="password" class="form-label">Select Treat</label>
+              <div class="input-group mb-4">
+                <span class="input-group-text">
+                  <i class="bi bi-heart-fill"></i>
+                </span>
+                  @Html.DropDownList("TreatId", (IEnumerable<SelectListItem>)ViewBag.TreatId, "Please Select Treat", new { @class="form-control" }) 
+              </div>
+              <div class="mb-4 text-center">
+                <input type="submit" value="Save" class="btn btn-primary" />
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+}

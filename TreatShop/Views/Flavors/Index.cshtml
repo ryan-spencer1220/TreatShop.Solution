@@ -20,12 +20,11 @@
           </div>
       </div>
     </section>
-
   }
+  <p>@Html.ActionLink("Add New Flavor", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
 } 
 else
 {
-<p>@Html.ActionLink("Add New Flavor", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
   <section class="bg-light">
       <div class="container px-5">
         <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
@@ -35,4 +34,5 @@ else
         </div>
     </div>
   </section>
+  <p>@Html.ActionLink("Add New Flavor", "Create", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
 }
