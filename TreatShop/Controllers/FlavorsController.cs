@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace TreatShop.Controllers
 {
-  public class FlavorsController : Controller
+    public class FlavorsController : Controller
   {
     private readonly TreatShopContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
@@ -29,12 +29,14 @@ namespace TreatShop.Controllers
       return View(orderByDescendingResult);
     }
 
+  [Authorize]
     public ActionResult Create()
     {
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View();
     }
 
+  [Authorize]
     [HttpPost]
     public async Task<ActionResult> Create(Flavor flavor, int TreatId)
     {
@@ -60,12 +62,14 @@ namespace TreatShop.Controllers
       return View(thisFlavor);
     }
 
+  [Authorize]
     public ActionResult Edit(int id)
     {
       var thisFlavor = _db.Flavors.FirstOrDefault(flavor => flavor.FlavorId == id);
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View(thisFlavor);
     }
+  [Authorize]
 
     [HttpPost]
     public ActionResult Edit(Flavor flavor, int TreatId)
@@ -86,6 +90,7 @@ namespace TreatShop.Controllers
       return View(thisFlavor);
     }
 
+  [Authorize]
     [HttpPost]
     public ActionResult AddTreat(Flavor flavor, int TreatId)
     {
@@ -96,24 +101,27 @@ namespace TreatShop.Controllers
       }
       return RedirectToAction("Index");
     }
-    
+
+  [Authorize]
     public ActionResult Delete(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
+      var thisFlavor = _db.Flavors.FirstOrDefault(items => items.FlavorId == id);
       return View(thisFlavor);
     }
 
+  [Authorize]
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisFlavor = _db.Flavors.FirstOrDefault(flavors => flavors.FlavorId == id);
+      var thisFlavor = _db.Flavors.FirstOrDefault(items => items.FlavorId == id);
       _db.Flavors.Remove(thisFlavor);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
+  [Authorize]
     [HttpPost]
-    public ActionResult DeleteTreat(int joinId)
+    public ActionResult DeleteCategory(int joinId)
     {
         var joinEntry = _db.FlavorTreat.FirstOrDefault(entry => entry.FlavorTreatId == joinId);
         _db.FlavorTreat.Remove(joinEntry);
