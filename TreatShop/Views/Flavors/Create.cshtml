@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TreatShop.Models.Flavor
+
+<h4 class="display-4 lh-1 mb-4">Add New Flavor</h4>
+
+<div class="col-12 col-lg-5">
+  @using (Html.BeginForm())
+  {
+    <div class="form-group">
+      <p>Flavor Name</p>
+      @Html.TextBoxFor(model => model.Name,
+    new {required="required"})
+    </div>
+    <input type="submit" value="Add Flavor" class="btn btn-primary"/>
+  }
+</div>
+
+<br>
+
+<p>@Html.ActionLink("Back to Flavors", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>

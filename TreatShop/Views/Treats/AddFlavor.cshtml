@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TreatShop.Models.Treat
+
+<h4 class="display-4 lh-1 mb-4">Add Flavor To @Html.DisplayFor(model => model.Name)</h4>
+
+<div class="col-12 col-lg-5">
+  @using (Html.BeginForm())
+  {
+      @Html.HiddenFor(model => model.TreatId)
+    <div class="form-group">
+      <p>Select Flavor</p>
+      @Html.DropDownList("EngineerId")
+    </div>
+      <input type="submit" value="Save" class="btn btn-primary"/>
+  }
+</div>
+<br>
+<div class="col-12 col-lg-5">
+  <p>@Html.ActionLink("Back to list", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role="button" })</p>
+</div>

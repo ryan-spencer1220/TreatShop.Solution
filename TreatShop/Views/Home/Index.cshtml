@@ -1,0 +1,65 @@
+@{
+  Layout = "_Layout";
+}
+
+@using TreatShop.Models
+<h1 class="display-4 lh-1 mb-4">Flavors</h1>
+
+@if (((List<TreatShop.Models.Flavor>)ViewData["flavors"]).Count == 0)
+{
+    <section class="bg-light">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <div class="col-12 col-lg-5">
+                <p class="lead fw-normal text-muted mb-5 mb-lg-0">No flavors have been added yet!</p>
+            </div>
+        </div>
+    </div>
+  </section>
+} 
+
+  @foreach(Flavor flavor in (List<TreatShop.Models.Flavor>)ViewData["flavors"])
+  {
+  <section class="bg-light">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <div class="col-12 col-lg-5">
+                <p class="lead fw-normal text-muted mb-5 mb-lg-0">@Html.ActionLink($"{flavor.Name}", "Details", "Flavors", new { id = flavor.FlavorId })</p>
+            </div>
+        </div>
+    </div>
+  </section>
+  }
+
+  <h1 class="display-4 lh-1 mb-4">Treats</h1>
+
+@if (((List<TreatShop.Models.Treat>)ViewData["treats"]).Count == 0)
+{
+  <section class="bg-light">
+      <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <div class="col-12 col-lg-5">
+                <p class="lead fw-normal text-muted mb-5 mb-lg-0">No treats have been added yet!</p>
+            </div>
+        </div>
+    </div>
+  </section>
+} 
+
+@foreach (Treat treat in (List<TreatShop.Models.Treat>)ViewData["treats"])
+{
+    <section class="bg-light">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <div class="col-12 col-lg-5">
+                <p class="lead fw-normal text-muted mb-5 mb-lg-0">@Html.ActionLink($"{treat.Name}", "Details", "Treats", new { id = treat.TreatId })</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+}
+
+<p>@Html.ActionLink("See all treats", "Index", "Treats")</p> 
+<p>@Html.ActionLink("See all flavors", "Index", "Flavors")</p>
+<p>@Html.ActionLink("Create an account", "Index", "Account")</p>
