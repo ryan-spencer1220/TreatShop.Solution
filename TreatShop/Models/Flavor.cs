@@ -12,5 +12,7 @@ namespace TreatShop.Models
         public int FlavorId { get; set; }
         public string Name { get; set; }
         public virtual ICollection<FlavorTreat> JoinEntities { get; set; }
+        public virtual ApplicationUser User { get; set; }
+
     }
 }

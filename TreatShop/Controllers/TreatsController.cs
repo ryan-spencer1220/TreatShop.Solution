@@ -11,24 +11,22 @@ using System.Security.Claims;
 
 namespace TreatShop.Controllers
 {
-  [Authorize]
-    public class TreatShopController : Controller
+    public class TreatsController : Controller
   {
     private readonly TreatShopContext _db;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public TreatShopController(UserManager<ApplicationUser> userManager, TreatShopContext db)
+    public TreatsController(UserManager<ApplicationUser> userManager, TreatShopContext db)
     {
       _userManager = userManager;
       _db = db;
     }
 
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userTreats);
+      List<Treat> treatList = _db.Treats.ToList();
+      List<Treat> orderByDescendingResult = treatList .OrderBy(s => s.Name).ToList();
+      return View(orderByDescendingResult);
     }
 
     public ActionResult Create()
@@ -37,6 +35,7 @@ namespace TreatShop.Controllers
       return View();
     }
 
+  [Authorize]
     [HttpPost]
     public async Task<ActionResult> Create(Treat treat, int FlavorId)
     {
@@ -61,13 +60,14 @@ namespace TreatShop.Controllers
           .FirstOrDefault(treat => treat.TreatId == id);
       return View(thisTreat);
     }
-
+  [Authorize]
     public ActionResult Edit(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
+  [Authorize]
 
     [HttpPost]
     public ActionResult Edit(Treat treat, int FlavorId)
@@ -80,6 +80,7 @@ namespace TreatShop.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+  [Authorize]
 
     public ActionResult AddFlavor(int id)
     {
@@ -87,6 +88,7 @@ namespace TreatShop.Controllers
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
+  [Authorize]
 
     [HttpPost]
     public ActionResult AddFlavor(Treat treat, int FlavorId)
@@ -98,12 +100,14 @@ namespace TreatShop.Controllers
       }
       return RedirectToAction("Index");
     }
+  [Authorize]
     
     public ActionResult Delete(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treats => treats.TreatId == id);
       return View(thisTreat);
     }
+  [Authorize]
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
@@ -113,6 +117,7 @@ namespace TreatShop.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+  [Authorize]
 
     [HttpPost]
     public ActionResult DeleteFlavor(int joinId)
