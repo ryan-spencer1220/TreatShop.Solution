@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TreatShop.Models;
 
-namespace TreatShop.Solution.Migrations
+namespace TreatShop.Migrations
 {
     [DbContext(typeof(TreatShopContext))]
     partial class TreatShopContextModelSnapshot : ModelSnapshot
@@ -218,7 +218,12 @@ namespace TreatShop.Solution.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
                     b.HasKey("FlavorId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Flavors");
                 });
@@ -312,6 +317,15 @@ namespace TreatShop.Solution.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("TreatShop.Models.Flavor", b =>
+                {
+                    b.HasOne("TreatShop.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TreatShop.Models.FlavorTreat", b =>

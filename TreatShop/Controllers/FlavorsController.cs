@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace TreatShop.Controllers
 {
+
     public class FlavorsController : Controller
   {
     private readonly TreatShopContext _db;
@@ -69,8 +70,8 @@ namespace TreatShop.Controllers
       ViewBag.TreatId = new SelectList(_db.Treats, "TreatId", "Name");
       return View(thisFlavor);
     }
-  [Authorize]
 
+  [Authorize]
     [HttpPost]
     public ActionResult Edit(Flavor flavor, int TreatId)
     {
@@ -101,7 +102,7 @@ namespace TreatShop.Controllers
       }
       return RedirectToAction("Index");
     }
-
+    
   [Authorize]
     public ActionResult Delete(int id)
     {

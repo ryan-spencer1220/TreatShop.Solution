@@ -29,6 +29,7 @@ namespace TreatShop.Controllers
       return View(orderByDescendingResult);
     }
 
+  [Authorize]
     public ActionResult Create()
     {
       ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");

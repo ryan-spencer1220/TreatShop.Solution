@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TreatShop.Solution.Migrations
+namespace TreatShop.Migrations
 {
     public partial class Initial : Migration
     {
@@ -45,19 +45,6 @@ namespace TreatShop.Solution.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Flavors",
-                columns: table => new
-                {
-                    FlavorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Flavors", x => x.FlavorId);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,6 +154,26 @@ namespace TreatShop.Solution.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Flavors",
+                columns: table => new
+                {
+                    FlavorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    UserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Flavors", x => x.FlavorId);
+                    table.ForeignKey(
+                        name: "FK_Flavors_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Treats",
                 columns: table => new
                 {
@@ -248,6 +255,11 @@ namespace TreatShop.Solution.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Flavors_UserId",
+                table: "Flavors",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FlavorTreat_FlavorId",
