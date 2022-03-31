@@ -22,6 +22,8 @@
 
 This application was designed for a fictional bakery utilizing C# and MySQL. The goal of the project was to create an application that allows users to create, read, update, and delete both treat flavors and the treats themselves. This applicaiton demonstrates an understanding of a "many-to-many" relationship between flavors and treats, a flavor can have multiple treats attached to it and an individual treat can have multiple flavors.
 
+<img width="1040" alt="Screen Shot 2022-03-25 at 1 57 54 PM" src="https://user-images.githubusercontent.com/86761275/160214913-3721926d-302a-4dd6-a23f-7c06d367b43d.png">
+
 ## Setup/Installation Requirements
 
 **Cloning**
