@@ -25,6 +25,14 @@
             <a class="nav-link" href="/Treats">Treats</a>
           </li>
         </ul>
+        @if (User.Identity.IsAuthenticated)
+          {
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="/Account">Account <i class="bi bi-person-circle"></i></a>
+            </li>
+          </ul>
+          }
       </div>
     </div>
   </nav>
