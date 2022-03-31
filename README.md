@@ -73,7 +73,7 @@ This application was designed for a fictional bakery utilizing C# and MySQL. The
 
 ## Known Bugs
 
-- _No Known Bugs._
+- Some users have experienced a certificate error when running this project. In the event of this error, pelease run the command: _dotnet dev-certs https_ to resolve the issue.
 
 ### License
 
